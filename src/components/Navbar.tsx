@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 
+
 export default function Navbar() {
   const { user, logout } = useAuth();
   const navigate = useNavigate();
@@ -28,7 +29,9 @@ export default function Navbar() {
             </>
           ) : (
             <>
-              <span className="text-blue-700 font-semibold">Salom, {user}</span>
+              {user && typeof user !== 'string' && (
+                <span className="text-blue-700 font-semibold">Salom, {user.name}</span>
+              )}
               <span onClick={handleLogout} className="text-red-600 cursor-pointer hover:text-red-800">
                 Chiqish
               </span>
